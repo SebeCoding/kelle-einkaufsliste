@@ -27,21 +27,9 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Plan
-        run: terraform plan
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-
       - name: Dateien nach S3 deployen
         run: |
-          aws s3 sync . s3://demo-test-silas \
+          aws s3 sync . s3://kelle-m210-pruefungsbucket \
             --delete \
             --exclude ".git/*" \
             --exclude ".github/*" \
